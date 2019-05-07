@@ -327,8 +327,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#including-guppy-barcoding-information-and-json-output" title="Including guppy barcoding information and JSON output" class="md-nav__link">
-    Including guppy barcoding information and JSON output
+  <a href="#json-data-output-on-top-of-the-html-report" title="JSON data output on top of the html report" class="md-nav__link">
+    JSON data output on top of the html report
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#including-guppy-barcoding-information" title="Including guppy barcoding information" class="md-nav__link">
+    Including guppy barcoding information
   </a>
   
 </li>
@@ -582,8 +589,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#including-guppy-barcoding-information-and-json-output" title="Including guppy barcoding information and JSON output" class="md-nav__link">
-    Including guppy barcoding information and JSON output
+  <a href="#json-data-output-on-top-of-the-html-report" title="JSON data output on top of the html report" class="md-nav__link">
+    JSON data output on top of the html report
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#including-guppy-barcoding-information" title="Including guppy barcoding information" class="md-nav__link">
+    Including guppy barcoding information
   </a>
   
 </li>
@@ -768,12 +782,53 @@ GENERATING HTML REPORT
 </pre></div>
 
 
-<h4 id="including-guppy-barcoding-information-and-json-output">Including guppy barcoding information and JSON output</h4>
+<p><a href="https://a-slide.github.io/pycoQC/demo/data/output/Albacore-1.2.1_basecall-1D-DNA.html">HTML OUTPUT</a></p>
+<h4 id="json-data-output-on-top-of-the-html-report">JSON data output on top of the html report</h4>
+<div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
+    -f data/summary/Guppy-2.1.3_basecall-1D-RNA_sequencing_summary.txt.gz <span class="se">\</span>
+    -o data/output/Guppy-2.1.3_basecall-1D_RNA.html <span class="se">\</span>
+    -j data/output/Guppy-2.1.3_basecall-1D_RNA.json
+</pre></div>
+
+<div class="codehilite"><pre><span></span>PARSING DATA FILES
+Importing raw data from sequencing summary files
+Verifying fields and discarding unused columns
+Droping lines containing NA values
+Sorting run IDs by decreasing throughput
+Reordering runids
+Reindexing dataframe by read_ids
+GENERATING HTML REPORT
+    Parsing html config file
+    Running method summary
+    Running method barcode_summary
+        No barcode information available
+    Running method run_id_summary
+    Running method reads_len_1D
+    Running method reads_qual_1D
+    Running method reads_len_qual_2D
+    Running method output_over_time
+    Running method len_over_time
+    Running method qual_over_time
+    Running method barcode_counts
+        No barcode information available
+    Running method channels_activity
+    Loading HTML template
+    Rendering plots in d3js
+    Writing to HTML file
+GENERATING JSON REPORT
+    Running summary_stats_dict method
+    Writing to JSON file
+(pycoQC)
+</pre></div>
+
+
+<p><a href="https://a-slide.github.io/pycoQC/demo/data/output/Guppy-2.1.3_basecall-1D_RNA.html">HTML OUTPUT</a></p>
+<p><a href="https://a-slide.github.io/pycoQC/demo/data/output/Guppy-2.1.3_basecall-1D_RNA.html">JSON OUTPUT</a></p>
+<h4 id="including-guppy-barcoding-information">Including guppy barcoding information</h4>
 <div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
     -f data/summary/Guppy-2.1.3_basecall-1D-DNA_sequencing_summary.txt.gz <span class="se">\</span>
     -b data/summary/Guppy-2.1.3_basecall-1D_DNA_barcoding_summary.txt.gz <span class="se">\</span>
-    -o data/output/Guppy-2.1.3_basecall-1D_DNA_barcode.html <span class="se">\</span>
-    -j data/output/Guppy-2.1.3_basecall-1D_DNA_barcode.json
+    -o data/output/Guppy-2.1.3_basecall-1D_DNA_barcode.html
 </pre></div>
 
 <div class="codehilite"><pre><span></span>PARSING DATA FILES
@@ -801,13 +856,11 @@ GENERATING HTML REPORT
     Loading HTML template
     Rendering plots in d3js
     Writing to HTML file
-GENERATING JSON REPORT
-    Running summary_stats_dict method
-    Writing to JSON file
 (pycoQC)
 </pre></div>
 
 
+<p><a href="https://a-slide.github.io/pycoQC/demo/data/output/Guppy-2.1.3_basecall-1D_DNA_barcode.html">HTML OUTPUT</a></p>
 <h4 id="matching-multiple-files-with-a-regex-and-add-a-title-to-report">Matching multiple files with a regex and add a title to report</h4>
 <div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
     -f data/summary/Albacore*RNA* <span class="se">\</span>
@@ -845,6 +898,7 @@ GENERATING HTML REPORT
 </pre></div>
 
 
+<p><a href="https://a-slide.github.io/pycoQC/demo/data/output/Albacore_all_RNA.html">HTML OUTPUT</a></p>
 <h4 id="tweak-filtering-parameters">Tweak filtering parameters</h4>
 <ul>
 <li>Flag reads with a quality above 8 as pass</li>
@@ -853,8 +907,8 @@ GENERATING HTML REPORT
 <li>Increase verbose_level</li>
 </ul>
 <div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
-    -f data/summary/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz<span class="se">\</span>
-    -o data/output/Albacore-1.7.0_basecall-1D-DNA.html <span class="se">\</span>
+    -f data/summary/Albacore-2.1.10_basecall-1D-DNA_sequencing_summary.txt.gz<span class="se">\</span>
+    -o data/output/Albacore-2.1.10_basecall-1D-DNA.html <span class="se">\</span>
     --min_pass_qual <span class="m">8</span> <span class="se">\</span>
     --filter_calibration <span class="se">\</span>
     --min_barcode_percent <span class="m">10</span> <span class="se">\</span>
@@ -863,44 +917,42 @@ GENERATING HTML REPORT
 
 <div class="codehilite"><pre><span></span>PARSING DATA FILES
 Importing raw data from sequencing summary files
-    Sequencing summary files found: [&#39;data/summary/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&#39;]
+    Sequencing summary files found: [&#39;data/summary/Albacore-2.1.10_basecall-1D-DNA_sequencing_summary.txt.gz&#39;]
     10,000 reads found in initial file
 Verifying fields and discarding unused columns
     1D Run type
-    Columns found: [&#39;read_id&#39;, &#39;run_id&#39;, &#39;channel&#39;, &#39;start_time&#39;, &#39;sequence_length_template&#39;, &#39;mean_qscore_template&#39;, &#39;calibration_strand_genome_template&#39;, &#39;barcode_arrangement&#39;]
+    Columns found: [&#39;read_id&#39;, &#39;run_id&#39;, &#39;channel&#39;, &#39;start_time&#39;, &#39;sequence_length_template&#39;, &#39;mean_qscore_template&#39;, &#39;calibration_strand_genome_template&#39;]
 Droping lines containing NA values
     0 reads discarded
 Filtering out zero length reads
-    438 reads discarded
+    40 reads discarded
 Filtering out calibration strand reads
-    2,605 reads discarded
+    0 reads discarded
 Sorting run IDs by decreasing throughput
-    Run-id order [&#39;db5916f2fe7957afac1d0aaccdec883342c4bc31&#39;]
+    Run-id order [&#39;aae4df85078f7fe690547aeb688f2640644f323c&#39;, &#39;f54aa9064eb703797b98c83804bd65541b1ffc1b&#39;]
 Reordering runids
-    Processing reads with Run_ID db5916f2fe7957afac1d0aaccdec883342c4bc31 / time offset: 0
-Cleaning up low frequency barcodes
-    514 reads with low frequency barcode unset
+    Processing reads with Run_ID aae4df85078f7fe690547aeb688f2640644f323c / time offset: 0
+    Processing reads with Run_ID f54aa9064eb703797b98c83804bd65541b1ffc1b / time offset: 72.23357
 Reindexing dataframe by read_ids
 [pycoQC]
 Runtime info
     package_name: pycoQC
     package_version: 2.2.3.7
-    timestamp: 2019-05-07 13:41:26.035913
+    timestamp: 2019-05-07 14:28:43.307422
     verbose_level: 2
     min_barcode_percent: 10.0
     filter_calibration: True
     min_pass_qual: 8
     runid_list: []
     barcode_summary_file: None
-    seq_summary_file: [&#39;data/summary/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&#39;]
+    seq_summary_file: [&#39;data/summary/Albacore-2.1.10_basecall-1D-DNA_sequencing_summary.txt.gz&#39;]
 Read counts
     Initial reads: 10000
     Reads with NA values discarded: 0
-    Zero length reads discarded: 438
-    Calibration reads discarded: 2605
-    Reads with low frequency barcode unset: 514
-    Valid reads: 6957
-    Valid pass reads: 4536
+    Zero length reads discarded: 40
+    Calibration reads discarded: 0
+    Valid reads: 9960
+    Valid pass reads: 2535
 
 GENERATING HTML REPORT
     Parsing html config file
@@ -914,6 +966,7 @@ GENERATING HTML REPORT
     summary ({&#39;plot_title&#39;: &#39;Run summary&#39;})
     Running method barcode_summary
     barcode_summary ({&#39;plot_title&#39;: &#39;Run summary by barcode&#39;})
+        No barcode information available
     Running method run_id_summary
     run_id_summary ({&#39;plot_title&#39;: &#39;Run summary by Run ID&#39;})
     Running method reads_len_1D
@@ -930,6 +983,7 @@ GENERATING HTML REPORT
     qual_over_time ({&#39;plot_title&#39;: &#39;Mean read quality over time&#39;, &#39;median_color&#39;: &#39;rgb(250,128,114)&#39;, &#39;quartile_color&#39;: &#39;rgb(250,170,160)&#39;, &#39;extreme_color&#39;: &#39;rgba(250,170,160,0.5)&#39;, &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000})
     Running method barcode_counts
     barcode_counts ({&#39;plot_title&#39;: &#39;Number of reads per barcode&#39;, &#39;colors&#39;: [&#39;#f8bc9c&#39;, &#39;#f6e9a1&#39;, &#39;#f5f8f2&#39;, &#39;#92d9f5&#39;, &#39;#4f97ba&#39;]})
+        No barcode information available
     Running method channels_activity
     channels_activity ({&#39;plot_title&#39;: &#39;Channel activity over time&#39;, &#39;colorscale&#39;: [[0.0, &#39;rgba(255,255,255,0)&#39;], [0.01, &#39;rgb(255,255,200)&#39;], [0.25, &#39;rgb(255,200,0)&#39;], [0.5, &#39;rgb(200,0,0)&#39;], [0.75, &#39;rgb(120,0,0)&#39;], [1.0, &#39;rgb(0,0,0)&#39;]], &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000})
     Loading HTML template
@@ -940,6 +994,7 @@ GENERATING HTML REPORT
 </pre></div>
 
 
+<p><a href="https://a-slide.github.io/pycoQC/demo/data/output/Albacore-2.1.10_basecall-1D-DNA.html">HTML OUTPUT</a></p>
 <h4 id="advanced-configuration-with-custon-json-file">Advanced configuration with custon json file</h4>
 <p>Although we recommend to stick to the default parameters, a json formatted configuration file can be provided to tweak the plots. A default configuration file can be generated using:</p>
 <div class="codehilite"><pre><span></span>pycoQC --default_config &gt; data/pycoQC_config.json
@@ -982,6 +1037,9 @@ GENERATING HTML REPORT
     Writing to HTML file
 (pycoQC)
 </pre></div>
+
+
+<p><a href="https://a-slide.github.io/pycoQC/demo/data/output/Albacore-1.7.0_basecall-1D-DNA.html">HTML OUTPUT</a></p>
                 
                   
                 
