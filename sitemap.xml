@@ -16,28 +16,28 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://a-slide.github.io/pycoQC/demo/pycoQC_CLI_demo/</loc>
-     <lastmod>2019-05-07</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
      <loc>https://a-slide.github.io/pycoQC/demo/pycoQC_API_demo/</loc>
      <lastmod>2019-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc></loc>
-     
+     <loc>https://a-slide.github.io/pycoQC/demo/pycoQC_CLI_demo/</loc>
+     <lastmod>2019-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc></loc>
-     
+     <loc>https://a-slide.github.io/pycoQC/Fast5_to_seq_summary_usage/</loc>
+     <lastmod>2019-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc></loc>
-     
+     <loc>https://a-slide.github.io/pycoQC/demo/Fast5_to_seq_summary_API_demo/</loc>
+     <lastmod>2019-05-07</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://a-slide.github.io/pycoQC/demo/Fast5_to_seq_summary_CLI_demo/</loc>
+     <lastmod>2019-05-07</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
