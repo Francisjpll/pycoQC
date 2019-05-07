@@ -1,0 +1,1064 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="PycoQC computes metrics and generates interactive QC plots for Oxford Nanopore technologies sequencing data">
+      
+      
+        <link rel="canonical" href="https://a-slide.github.io/pycoQC/demo/pycoQC_CLI_demo/">
+      
+      
+        <meta name="author" content="Adrien Leger & Tommaso Leonardi">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Command line usage - pycoQC</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#pycoqc-usage-notebook" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://a-slide.github.io/pycoQC/" title="pycoQC" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              pycoQC
+            </span>
+            <span class="md-header-nav__topic">
+              Command line usage
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/a-slide/pycoQC/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    a-slide/pycoQC
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://a-slide.github.io/pycoQC/" title="pycoQC" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    pycoQC
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/a-slide/pycoQC/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    a-slide/pycoQC
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../installation/" title="Installation instructions" class="md-nav__link">
+      Installation instructions
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      pycoQC Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        pycoQC Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pycoQC_usage/" title="Using pycoQC" class="md-nav__link">
+      Using pycoQC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Command line usage
+      </label>
+    
+    <a href="./" title="Command line usage" class="md-nav__link md-nav__link--active">
+      Command line usage
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cli-usage" title="CLI Usage" class="md-nav__link">
+    CLI Usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activate-virtual-environment" title="Activate virtual environment" class="md-nav__link">
+    Activate virtual environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" title="Getting help" class="md-nav__link">
+    Getting help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" title="Usage examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" title="Basic usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#including-guppy-barcoding-information-and-json-output" title="Including guppy barcoding information and JSON output" class="md-nav__link">
+    Including guppy barcoding information and JSON output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matching-multiple-files-with-a-regex-and-add-a-title-to-report" title="Matching multiple files with a regex and add a title to report" class="md-nav__link">
+    Matching multiple files with a regex and add a title to report
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tweak-filtering-parameters" title="Tweak filtering parameters" class="md-nav__link">
+    Tweak filtering parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-configuration-with-custon-json-file" title="Advanced configuration with custon json file" class="md-nav__link">
+    Advanced configuration with custon json file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pycoQC_API_demo/" title="jupyter API usage" class="md-nav__link">
+      jupyter API usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Fast5_to_seq_summary Usage
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Fast5_to_seq_summary Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Fast5_to_seq_summary.md" title="Using Fast5_to_seq_summary" class="md-nav__link">
+      Using Fast5_to_seq_summary
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Fast5_to_seq_summary_CLI_demo.ipynb" title="Command line usage" class="md-nav__link">
+      Command line usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Fast5_to_seq_summary_API_demo.ipynb" title="jupyter API usage" class="md-nav__link">
+      jupyter API usage
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../citing/" title="Citing pycoQC" class="md-nav__link">
+      Citing pycoQC
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../acknowledgements/" title="Acknowledgements" class="md-nav__link">
+      Acknowledgements
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../alternative/" title="Alternative and complementary packages" class="md-nav__link">
+      Alternative and complementary packages
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Contributing Guidelines" class="md-nav__link">
+      Contributing Guidelines
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../code_of_conduct/" title="Code of conduct" class="md-nav__link">
+      Code of conduct
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../licence/" title="Licence" class="md-nav__link">
+      Licence
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cli-usage" title="CLI Usage" class="md-nav__link">
+    CLI Usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activate-virtual-environment" title="Activate virtual environment" class="md-nav__link">
+    Activate virtual environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-help" title="Getting help" class="md-nav__link">
+    Getting help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage-examples" title="Usage examples" class="md-nav__link">
+    Usage examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-usage" title="Basic usage" class="md-nav__link">
+    Basic usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#including-guppy-barcoding-information-and-json-output" title="Including guppy barcoding information and JSON output" class="md-nav__link">
+    Including guppy barcoding information and JSON output
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matching-multiple-files-with-a-regex-and-add-a-title-to-report" title="Matching multiple files with a regex and add a title to report" class="md-nav__link">
+    Matching multiple files with a regex and add a title to report
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tweak-filtering-parameters" title="Tweak filtering parameters" class="md-nav__link">
+    Tweak filtering parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-configuration-with-custon-json-file" title="Advanced configuration with custon json file" class="md-nav__link">
+    Advanced configuration with custon json file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/a-slide/pycoQC/edit/master/docs/demo/pycoQC_CLI_demo.ipynb" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="pycoqc-usage-notebook">pycoQC Usage Notebook</h1>
+<p>PycoQC CLI can generate a beautiful HTML formatted report containing interactive D3.js plots. On top of it, the CLI can also dump summary information in a JSON formated file allowing easy parsing with third party tools.</p>
+<p>The report is dynamically generated depending on the information available in the summary file.</p>
+<h2 id="cli-usage">CLI Usage</h2>
+<h3 id="activate-virtual-environment">Activate virtual environment</h3>
+<div class="codehilite"><pre><span></span><span class="c1"># Using virtualenvwrapper here but can also be done with Conda </span>
+workon pycoQC
+</pre></div>
+
+<div class="codehilite"><pre><span></span>(pycoQC) (pycoQC)
+</pre></div>
+
+
+<h3 id="getting-help">Getting help</h3>
+<div class="codehilite"><pre><span></span>pycoQC -h
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="n">usage</span><span class="o">:</span> <span class="n">pycoQC</span> <span class="o">[-</span><span class="n">h</span><span class="o">]</span> <span class="o">[--</span><span class="n">version</span><span class="o">]</span>
+              <span class="o">[--</span><span class="n">summary_file</span> <span class="n">SUMMARY_FILE</span> <span class="o">[</span><span class="n">SUMMARY_FILE</span> <span class="o">...]]</span>
+              <span class="o">[--</span><span class="n">barcode_file</span> <span class="n">BARCODE_FILE</span> <span class="o">[</span><span class="n">BARCODE_FILE</span> <span class="o">...]]</span>
+              <span class="o">[--</span><span class="n">html_outfile</span> <span class="n">HTML_OUTFILE</span><span class="o">]</span> <span class="o">[--</span><span class="n">json_outfile</span> <span class="n">JSON_OUTFILE</span><span class="o">]</span>
+              <span class="o">[--</span><span class="n">min_pass_qual</span> <span class="n">MIN_PASS_QUAL</span><span class="o">]</span> <span class="o">[--</span><span class="n">filter_calibration</span><span class="o">]</span>
+              <span class="o">[--</span><span class="n">min_barcode_percent</span> <span class="n">MIN_BARCODE_PERCENT</span><span class="o">]</span> <span class="o">[--</span><span class="n">title</span> <span class="n">TITLE</span><span class="o">]</span>
+              <span class="o">[--</span><span class="n">template_file</span> <span class="n">TEMPLATE_FILE</span><span class="o">]</span> <span class="o">[--</span><span class="n">config</span> <span class="n">CONFIG</span><span class="o">]</span>
+              <span class="o">[--</span><span class="n">default_config</span><span class="o">]</span> <span class="o">[--</span><span class="n">list_plots</span><span class="o">]</span> <span class="o">[--</span><span class="n">verbose_level</span> <span class="o">{</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">}]</span>
+
+<span class="n">pycoQC</span> <span class="n">computes</span> <span class="n">metrics</span> <span class="n">and</span> <span class="n">generates</span> <span class="n">interactive</span> <span class="n">QC</span> <span class="n">plots</span> <span class="n">from</span> <span class="n">the</span> <span class="n">sequencing</span> <span class="n">summary</span> <span class="n">report</span> <span class="n">generated</span> <span class="n">by</span> <span class="n">Oxford</span> <span class="n">Nanopore</span> <span class="n">technologies</span> <span class="n">basecallers</span>
+
+<span class="o">*</span> <span class="n">Minimal</span> <span class="n">usage</span>
+    <span class="n">pycoQC</span> <span class="o">-</span><span class="n">f</span> <span class="n">sequencing_summary</span><span class="o">.</span><span class="na">txt</span> <span class="o">-</span><span class="n">o</span> <span class="n">pycoQC_output</span><span class="o">.</span><span class="na">html</span>
+<span class="o">*</span> <span class="n">Including</span> <span class="n">Guppy</span> <span class="n">barcoding</span> <span class="n">file</span> <span class="n">and</span> <span class="n">json</span> <span class="n">output</span>
+    <span class="n">pycoQC</span> <span class="o">-</span><span class="n">f</span> <span class="n">sequencing_summary</span><span class="o">.</span><span class="na">txt</span> <span class="o">-</span><span class="n">b</span> <span class="n">barcoding_sequencing</span><span class="o">.</span><span class="na">txt</span> <span class="o">-</span><span class="n">o</span> <span class="n">pycoQC_output</span><span class="o">.</span><span class="na">html</span> <span class="o">-</span><span class="n">j</span> <span class="n">pycoQC_output</span><span class="o">.</span><span class="na">json</span>
+
+<span class="n">optional</span> <span class="k">arguments</span><span class="o">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="o">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="k">this</span> <span class="n">help</span> <span class="n">message</span> <span class="n">and</span> <span class="n">exit</span>
+  <span class="o">--</span><span class="n">version</span>             <span class="n">show</span> <span class="n">program</span><span class="s1">&#39;s version number and exit</span>
+
+<span class="s1">Input/output options:</span>
+<span class="s1">  --summary_file SUMMARY_FILE [SUMMARY_FILE ...], -f SUMMARY_FILE [SUMMARY_FILE ...]</span>
+<span class="s1">                        Path to the sequencing_summary generated by Albacore</span>
+<span class="s1">                        1.0.0 + (read_fast5_basecaller.py) / Guppy 2.1.3+</span>
+<span class="s1">                        (guppy_basecaller). One can also pass multiple space</span>
+<span class="s1">                        separated file paths or a UNIX style regex matching</span>
+<span class="s1">                        multiple files (Required)</span>
+<span class="s1">  --barcode_file BARCODE_FILE [BARCODE_FILE ...], -b BARCODE_FILE [BARCODE_FILE ...]</span>
+<span class="s1">                        Path to the barcode_summary_file generated by Guppy</span>
+<span class="s1">                        2.1.3+ (guppy_barcoder).. One can also pass multiple</span>
+<span class="s1">                        space separated file paths or a UNIX style regex</span>
+<span class="s1">                        matching multiple files (optional)</span>
+<span class="s1">  --html_outfile HTML_OUTFILE, -o HTML_OUTFILE</span>
+<span class="s1">                        Path to an output html file (required if json_outfile</span>
+<span class="s1">                        not given)</span>
+<span class="s1">  --json_outfile JSON_OUTFILE, -j JSON_OUTFILE</span>
+<span class="s1">                        Path to an output json file (required if html_outfile</span>
+<span class="s1">                        not given)</span>
+
+<span class="s1">Filtering options:</span>
+<span class="s1">  --min_pass_qual MIN_PASS_QUAL, -q MIN_PASS_QUAL</span>
+<span class="s1">                        Minimum quality to consider a read as &#39;</span><span class="n">pass</span><span class="s1">&#39; (default:</span>
+<span class="s1">                        7)</span>
+<span class="s1">  --filter_calibration  If given reads flagged as calibration strand by the</span>
+<span class="s1">                        basecaller are removed (default: False)</span>
+<span class="s1">  --min_barcode_percent MIN_BARCODE_PERCENT</span>
+<span class="s1">                        Minimal percent of total reads to retain barcode</span>
+<span class="s1">                        label. If below the barcode value is set as</span>
+<span class="s1">                        `unclassified` (default: 0.1)</span>
+
+<span class="s1">HTML report options:</span>
+<span class="s1">  --title TITLE, -t TITLE</span>
+<span class="s1">                        A title to be used in the html report (default: None)</span>
+<span class="s1">  --template_file TEMPLATE_FILE</span>
+<span class="s1">                        Jinja2 html template for the html report (default:</span>
+<span class="s1">                        None)</span>
+<span class="s1">  --config CONFIG, -c CONFIG</span>
+<span class="s1">                        Path to a JSON configuration file for the html report.</span>
+<span class="s1">                        If not provided, looks for it in ~/.pycoQC and</span>
+<span class="s1">                        ~/.config/pycoQC/config. If it&#39;</span><span class="n">s</span> <span class="n">still</span> <span class="n">not</span> <span class="n">found</span><span class="o">,</span>
+                        <span class="n">falls</span> <span class="n">back</span> <span class="n">to</span> <span class="k">default</span> <span class="n">parameters</span><span class="o">.</span> <span class="n">The</span> <span class="n">first</span> <span class="n">level</span> <span class="n">keys</span>
+                        <span class="n">are</span> <span class="n">the</span> <span class="n">names</span> <span class="n">of</span> <span class="n">the</span> <span class="n">plots</span> <span class="n">to</span> <span class="n">be</span> <span class="n">included</span><span class="o">.</span> <span class="n">The</span> <span class="n">second</span>
+                        <span class="n">level</span> <span class="n">keys</span> <span class="n">are</span> <span class="n">the</span> <span class="n">parameters</span> <span class="n">to</span> <span class="n">pass</span> <span class="n">to</span> <span class="k">each</span> <span class="n">plotting</span>
+                        <span class="kd">function</span> <span class="o">(</span><span class="k">default</span><span class="o">:</span> <span class="n">None</span><span class="o">)</span><span class="err">&quot;</span><span class="o">)</span>
+
+<span class="n">Other</span> <span class="n">options</span><span class="o">:</span>
+  <span class="o">--</span><span class="n">default_config</span><span class="o">,</span> <span class="o">-</span><span class="n">d</span>  <span class="n">Print</span> <span class="k">default</span> <span class="n">configuration</span> <span class="n">file</span><span class="o">.</span> <span class="n">Can</span> <span class="n">be</span> <span class="n">used</span> <span class="n">to</span>
+                        <span class="n">generate</span> <span class="n">a</span> <span class="n">template</span> <span class="n">JSON</span> <span class="n">file</span> <span class="o">(</span><span class="k">default</span><span class="o">:</span> <span class="n">False</span><span class="o">)</span>
+  <span class="o">--</span><span class="n">list_plots</span><span class="o">,</span> <span class="o">-</span><span class="n">l</span>      <span class="n">Print</span> <span class="n">the</span> <span class="n">list</span> <span class="n">of</span> <span class="n">available</span> <span class="n">plotting</span> <span class="n">functions</span> <span class="n">and</span>
+                        <span class="n">exit</span> <span class="o">(</span><span class="k">default</span><span class="o">:</span> <span class="n">None</span><span class="o">)</span>
+  <span class="o">--</span><span class="n">verbose_level</span> <span class="o">{</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">},</span> <span class="o">-</span><span class="n">v</span> <span class="o">{</span><span class="mi">2</span><span class="o">,</span><span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">}</span>
+                        <span class="n">Level</span> <span class="n">of</span> <span class="n">verbosity</span><span class="o">,</span> <span class="n">from</span> <span class="mi">2</span> <span class="o">(</span><span class="n">Chatty</span><span class="o">)</span> <span class="n">to</span> <span class="mi">0</span> <span class="o">(</span><span class="n">Nothing</span><span class="o">)</span>
+                        <span class="o">(</span><span class="k">default</span><span class="o">:</span> <span class="mi">1</span><span class="o">)</span>
+<span class="o">(</span><span class="n">pycoQC</span><span class="o">)</span>
+</pre></div>
+
+
+<h3 id="usage-examples">Usage examples</h3>
+<h4 id="basic-usage">Basic usage</h4>
+<div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
+    -f data/summary/Albacore-1.2.1_basecall-1D-DNA_sequencing_summary.txt.gz <span class="se">\</span>
+    -o data/output/Albacore-1.2.1_basecall-1D-DNA.html
+</pre></div>
+
+<div class="codehilite"><pre><span></span>PARSING DATA FILES
+Importing raw data from sequencing summary files
+Verifying fields and discarding unused columns
+Droping lines containing NA values
+Sorting run IDs by decreasing throughput
+Reordering runids
+Reindexing dataframe by read_ids
+GENERATING HTML REPORT
+    Parsing html config file
+    Running method summary
+    Running method barcode_summary
+        No barcode information available
+    Running method run_id_summary
+    Running method reads_len_1D
+    Running method reads_qual_1D
+    Running method reads_len_qual_2D
+    Running method output_over_time
+    Running method len_over_time
+    Running method qual_over_time
+    Running method barcode_counts
+        No barcode information available
+    Running method channels_activity
+    Loading HTML template
+    Rendering plots in d3js
+    Writing to HTML file
+(pycoQC)
+</pre></div>
+
+
+<h4 id="including-guppy-barcoding-information-and-json-output">Including guppy barcoding information and JSON output</h4>
+<div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
+    -f data/summary/Guppy-2.1.3_basecall-1D-DNA_sequencing_summary.txt.gz <span class="se">\</span>
+    -b data/summary/Guppy-2.1.3_basecall-1D_DNA_barcoding_summary.txt.gz <span class="se">\</span>
+    -o data/output/Guppy-2.1.3_basecall-1D_DNA_barcode.html <span class="se">\</span>
+    -j data/output/Guppy-2.1.3_basecall-1D_DNA_barcode.json
+</pre></div>
+
+<div class="codehilite"><pre><span></span>PARSING DATA FILES
+Importing raw data from sequencing summary files
+Importing barcode information from barcode summary files
+Verifying fields and discarding unused columns
+Droping lines containing NA values
+Sorting run IDs by decreasing throughput
+Reordering runids
+Cleaning up low frequency barcodes
+Reindexing dataframe by read_ids
+GENERATING HTML REPORT
+    Parsing html config file
+    Running method summary
+    Running method barcode_summary
+    Running method run_id_summary
+    Running method reads_len_1D
+    Running method reads_qual_1D
+    Running method reads_len_qual_2D
+    Running method output_over_time
+    Running method len_over_time
+    Running method qual_over_time
+    Running method barcode_counts
+    Running method channels_activity
+    Loading HTML template
+    Rendering plots in d3js
+    Writing to HTML file
+GENERATING JSON REPORT
+    Running summary_stats_dict method
+    Writing to JSON file
+(pycoQC)
+</pre></div>
+
+
+<h4 id="matching-multiple-files-with-a-regex-and-add-a-title-to-report">Matching multiple files with a regex and add a title to report</h4>
+<div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
+    -f data/summary/Albacore*RNA* <span class="se">\</span>
+    -o data/output/Albacore_all_RNA.html <span class="se">\</span>
+    --title <span class="s2">&quot;All RNA runs&quot;</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>PARSING DATA FILES
+Importing raw data from sequencing summary files
+Verifying fields and discarding unused columns
+Droping lines containing NA values
+Filtering out zero length reads
+Sorting run IDs by decreasing throughput
+Reordering runids
+Reindexing dataframe by read_ids
+GENERATING HTML REPORT
+    Parsing html config file
+    Running method summary
+    Running method barcode_summary
+        No barcode information available
+    Running method run_id_summary
+    Running method reads_len_1D
+    Running method reads_qual_1D
+    Running method reads_len_qual_2D
+    Running method output_over_time
+    Running method len_over_time
+    Running method qual_over_time
+    Running method barcode_counts
+        No barcode information available
+    Running method channels_activity
+    Loading HTML template
+    Rendering plots in d3js
+    Writing to HTML file
+(pycoQC)
+</pre></div>
+
+
+<h4 id="tweak-filtering-parameters">Tweak filtering parameters</h4>
+<ul>
+<li>Flag reads with a quality above 8 as pass</li>
+<li>Discard reads aligned on the calibration standard</li>
+<li>Unset value of any barcode found in less than 10% of the reads</li>
+<li>Increase verbose_level</li>
+</ul>
+<div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
+    -f data/summary/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz<span class="se">\</span>
+    -o data/output/Albacore-1.7.0_basecall-1D-DNA.html <span class="se">\</span>
+    --min_pass_qual <span class="m">8</span> <span class="se">\</span>
+    --filter_calibration <span class="se">\</span>
+    --min_barcode_percent <span class="m">10</span> <span class="se">\</span>
+    --verbose_level <span class="m">2</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>PARSING DATA FILES
+Importing raw data from sequencing summary files
+    Sequencing summary files found: [&#39;data/summary/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&#39;]
+    10,000 reads found in initial file
+Verifying fields and discarding unused columns
+    1D Run type
+    Columns found: [&#39;read_id&#39;, &#39;run_id&#39;, &#39;channel&#39;, &#39;start_time&#39;, &#39;sequence_length_template&#39;, &#39;mean_qscore_template&#39;, &#39;calibration_strand_genome_template&#39;, &#39;barcode_arrangement&#39;]
+Droping lines containing NA values
+    0 reads discarded
+Filtering out zero length reads
+    438 reads discarded
+Filtering out calibration strand reads
+    2,605 reads discarded
+Sorting run IDs by decreasing throughput
+    Run-id order [&#39;db5916f2fe7957afac1d0aaccdec883342c4bc31&#39;]
+Reordering runids
+    Processing reads with Run_ID db5916f2fe7957afac1d0aaccdec883342c4bc31 / time offset: 0
+Cleaning up low frequency barcodes
+    514 reads with low frequency barcode unset
+Reindexing dataframe by read_ids
+[pycoQC]
+Runtime info
+    package_name: pycoQC
+    package_version: 2.2.3.7
+    timestamp: 2019-05-07 13:41:26.035913
+    verbose_level: 2
+    min_barcode_percent: 10.0
+    filter_calibration: True
+    min_pass_qual: 8
+    runid_list: []
+    barcode_summary_file: None
+    seq_summary_file: [&#39;data/summary/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz&#39;]
+Read counts
+    Initial reads: 10000
+    Reads with NA values discarded: 0
+    Zero length reads discarded: 438
+    Calibration reads discarded: 2605
+    Reads with low frequency barcode unset: 514
+    Valid reads: 6957
+    Valid pass reads: 4536
+
+GENERATING HTML REPORT
+    Parsing html config file
+    Try to read config file from system directory:/home/aleg/.pycoQC
+        File not found, non-readable or invalid
+    Try to read config file from system directory:/home/aleg/.config/pycoQC/config
+        File not found, non-readable or invalid
+    Fall back to default configuration
+{&#39;summary&#39;: {&#39;plot_title&#39;: &#39;Run summary&#39;}, &#39;barcode_summary&#39;: {&#39;plot_title&#39;: &#39;Run summary by barcode&#39;}, &#39;run_id_summary&#39;: {&#39;plot_title&#39;: &#39;Run summary by Run ID&#39;}, &#39;reads_len_1D&#39;: {&#39;plot_title&#39;: &#39;Distribution of read length&#39;, &#39;color&#39;: &#39;lightsteelblue&#39;, &#39;nbins&#39;: 200, &#39;smooth_sigma&#39;: 2, &#39;sample&#39;: 100000}, &#39;reads_qual_1D&#39;: {&#39;plot_title&#39;: &#39;Distribution of read quality&#39;, &#39;color&#39;: &#39;salmon&#39;, &#39;nbins&#39;: 200, &#39;smooth_sigma&#39;: 2, &#39;sample&#39;: 100000}, &#39;reads_len_qual_2D&#39;: {&#39;plot_title&#39;: &#39;Mean read quality per sequence length&#39;, &#39;colorscale&#39;: [[0.0, &#39;rgba(255,255,255,0)&#39;], [0.1, &#39;rgba(255,150,0,0)&#39;], [0.25, &#39;rgb(255,100,0)&#39;], [0.5, &#39;rgb(200,0,0)&#39;], [0.75, &#39;rgb(120,0,0)&#39;], [1.0, &#39;rgb(70,0,0)&#39;]], &#39;len_nbins&#39;: 200, &#39;qual_nbins&#39;: 75, &#39;smooth_sigma&#39;: 2, &#39;sample&#39;: 100000}, &#39;output_over_time&#39;: {&#39;plot_title&#39;: &#39;Output over experiment time&#39;, &#39;cumulative_color&#39;: &#39;rgb(204,226,255)&#39;, &#39;interval_color&#39;: &#39;rgb(102,168,255)&#39;, &#39;sample&#39;: 100000}, &#39;len_over_time&#39;: {&#39;plot_title&#39;: &#39;Read length over time&#39;, &#39;median_color&#39;: &#39;rgb(102,168,255)&#39;, &#39;quartile_color&#39;: &#39;rgb(153,197,255)&#39;, &#39;extreme_color&#39;: &#39;rgba(153,197,255,0.5)&#39;, &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000}, &#39;qual_over_time&#39;: {&#39;plot_title&#39;: &#39;Mean read quality over time&#39;, &#39;median_color&#39;: &#39;rgb(250,128,114)&#39;, &#39;quartile_color&#39;: &#39;rgb(250,170,160)&#39;, &#39;extreme_color&#39;: &#39;rgba(250,170,160,0.5)&#39;, &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000}, &#39;barcode_counts&#39;: {&#39;plot_title&#39;: &#39;Number of reads per barcode&#39;, &#39;colors&#39;: [&#39;#f8bc9c&#39;, &#39;#f6e9a1&#39;, &#39;#f5f8f2&#39;, &#39;#92d9f5&#39;, &#39;#4f97ba&#39;]}, &#39;channels_activity&#39;: {&#39;plot_title&#39;: &#39;Channel activity over time&#39;, &#39;colorscale&#39;: [[0.0, &#39;rgba(255,255,255,0)&#39;], [0.01, &#39;rgb(255,255,200)&#39;], [0.25, &#39;rgb(255,200,0)&#39;], [0.5, &#39;rgb(200,0,0)&#39;], [0.75, &#39;rgb(120,0,0)&#39;], [1.0, &#39;rgb(0,0,0)&#39;]], &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000}}
+    Running method summary
+    summary ({&#39;plot_title&#39;: &#39;Run summary&#39;})
+    Running method barcode_summary
+    barcode_summary ({&#39;plot_title&#39;: &#39;Run summary by barcode&#39;})
+    Running method run_id_summary
+    run_id_summary ({&#39;plot_title&#39;: &#39;Run summary by Run ID&#39;})
+    Running method reads_len_1D
+    reads_len_1D ({&#39;plot_title&#39;: &#39;Distribution of read length&#39;, &#39;color&#39;: &#39;lightsteelblue&#39;, &#39;nbins&#39;: 200, &#39;smooth_sigma&#39;: 2, &#39;sample&#39;: 100000})
+    Running method reads_qual_1D
+    reads_qual_1D ({&#39;plot_title&#39;: &#39;Distribution of read quality&#39;, &#39;color&#39;: &#39;salmon&#39;, &#39;nbins&#39;: 200, &#39;smooth_sigma&#39;: 2, &#39;sample&#39;: 100000})
+    Running method reads_len_qual_2D
+    reads_len_qual_2D ({&#39;plot_title&#39;: &#39;Mean read quality per sequence length&#39;, &#39;colorscale&#39;: [[0.0, &#39;rgba(255,255,255,0)&#39;], [0.1, &#39;rgba(255,150,0,0)&#39;], [0.25, &#39;rgb(255,100,0)&#39;], [0.5, &#39;rgb(200,0,0)&#39;], [0.75, &#39;rgb(120,0,0)&#39;], [1.0, &#39;rgb(70,0,0)&#39;]], &#39;len_nbins&#39;: 200, &#39;qual_nbins&#39;: 75, &#39;smooth_sigma&#39;: 2, &#39;sample&#39;: 100000})
+    Running method output_over_time
+    output_over_time ({&#39;plot_title&#39;: &#39;Output over experiment time&#39;, &#39;cumulative_color&#39;: &#39;rgb(204,226,255)&#39;, &#39;interval_color&#39;: &#39;rgb(102,168,255)&#39;, &#39;sample&#39;: 100000})
+    Running method len_over_time
+    len_over_time ({&#39;plot_title&#39;: &#39;Read length over time&#39;, &#39;median_color&#39;: &#39;rgb(102,168,255)&#39;, &#39;quartile_color&#39;: &#39;rgb(153,197,255)&#39;, &#39;extreme_color&#39;: &#39;rgba(153,197,255,0.5)&#39;, &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000})
+    Running method qual_over_time
+    qual_over_time ({&#39;plot_title&#39;: &#39;Mean read quality over time&#39;, &#39;median_color&#39;: &#39;rgb(250,128,114)&#39;, &#39;quartile_color&#39;: &#39;rgb(250,170,160)&#39;, &#39;extreme_color&#39;: &#39;rgba(250,170,160,0.5)&#39;, &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000})
+    Running method barcode_counts
+    barcode_counts ({&#39;plot_title&#39;: &#39;Number of reads per barcode&#39;, &#39;colors&#39;: [&#39;#f8bc9c&#39;, &#39;#f6e9a1&#39;, &#39;#f5f8f2&#39;, &#39;#92d9f5&#39;, &#39;#4f97ba&#39;]})
+    Running method channels_activity
+    channels_activity ({&#39;plot_title&#39;: &#39;Channel activity over time&#39;, &#39;colorscale&#39;: [[0.0, &#39;rgba(255,255,255,0)&#39;], [0.01, &#39;rgb(255,255,200)&#39;], [0.25, &#39;rgb(255,200,0)&#39;], [0.5, &#39;rgb(200,0,0)&#39;], [0.75, &#39;rgb(120,0,0)&#39;], [1.0, &#39;rgb(0,0,0)&#39;]], &#39;smooth_sigma&#39;: 1, &#39;sample&#39;: 100000})
+    Loading HTML template
+    Fall back to default template
+    Rendering plots in d3js
+    Writing to HTML file
+(pycoQC)
+</pre></div>
+
+
+<h4 id="advanced-configuration-with-custon-json-file">Advanced configuration with custon json file</h4>
+<p>Although we recommend to stick to the default parameters, a json formatted configuration file can be provided to tweak the plots. A default configuration file can be generated using:</p>
+<div class="codehilite"><pre><span></span>pycoQC --default_config &gt; data/pycoQC_config.json
+</pre></div>
+
+<div class="codehilite"><pre><span></span>(pycoQC)
+</pre></div>
+
+
+<p>Make changes to the file in your favorite text editor (channels_activity and barcode_counts plots was removed in this case). For more information refer to the API documentation</p>
+<p>Run pycoQC with <code class="codehilite">--config</code> option</p>
+<div class="codehilite"><pre><span></span>pycoQC <span class="se">\</span>
+    -f data/summary/Albacore-1.7.0_basecall-1D-DNA_sequencing_summary.txt.gz<span class="se">\</span>
+    -o data/output/Albacore-1.7.0_basecall-1D-DNA.html <span class="se">\</span>
+    --config data/pycoQC_config.json
+</pre></div>
+
+<div class="codehilite"><pre><span></span>PARSING DATA FILES
+Importing raw data from sequencing summary files
+Verifying fields and discarding unused columns
+Droping lines containing NA values
+Filtering out zero length reads
+Sorting run IDs by decreasing throughput
+Reordering runids
+Cleaning up low frequency barcodes
+Reindexing dataframe by read_ids
+GENERATING HTML REPORT
+    Parsing html config file
+    Running method summary
+    Running method barcode_summary
+    Running method run_id_summary
+    Running method reads_len_1D
+    Running method reads_qual_1D
+    Running method reads_len_qual_2D
+    Running method output_over_time
+    Running method len_over_time
+    Running method qual_over_time
+    Loading HTML template
+    Rendering plots in d3js
+    Writing to HTML file
+(pycoQC)
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../pycoQC_usage/" title="Using pycoQC" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Using pycoQC
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../pycoQC_API_demo/" title="jupyter API usage" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                jupyter API usage
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2019 Adrien Leger & Tommaso Leonardi 
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
